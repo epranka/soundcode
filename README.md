@@ -1,44 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center" style="border-bottom: none;">𝄞 How does your code sound?</h1>
 
-## Available Scripts
+<h3 align="center">And the idea was born...</h3>
 
-In the project directory, you can run:
+<br />
 
-### `yarn start`
+<h2 align="center">About the idea</h2>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As a developer, I love listening to music while coding. The orchestral music allows me to focus more on what I do. And one day I noticed my fingers dance on the keyboard by the music rhythm. Like playing the piano. Every word or symbol in the code was written with harmony. And then I thought... how it could sound... The code I write every day?
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+_And the idea was born._
 
-### `yarn test`
+<br />
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> Put your code and enjoy how it sounds: [soundcode.now.sh](https://soundcode.now.sh/)
 
-### `yarn build`
+Have ideas on how to improve it? New features? Feel free to share it on the [GitHub Issues](https://github.com/epranka/soundcode/issues).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br />
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<h2>How it works</h2>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Firstly, we load the sound fonts of the instruments which are used in this little orchestra. When you paste or write your code (or using our example), we parse it using the TypeScript AST parser to individual nodes. Then the composition begins.
 
-### `yarn eject`
+<h2>The mood of the code</h2>
+By code source, we determine the mood of the code. The more cheerful words in the code, the happier the mood and vice versa. The mood of the code is used to set the musical scale. If happy, a Major will be likely selected, if sad - Minor.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<h2>Chords</h2>
+By the code source and with some easy math we choose which chords progression play from the determined musical scale.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<h2>The Melody of the piano</h2>
+Each piano note is the TypeScript Token. With some math, we set the note, pitch, duration and time when to play. The special symbols like ,.+-/* and etc are excluded and used in the other instrument
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<h2>Other instruments</h2>
+Each instrument has its own notes. Some just looping the notes of the chord, while others play specific notes by the source code. For example, the Cello always plays active chord root note, when Harp only plays at the special characters or Chorus at the strings.
