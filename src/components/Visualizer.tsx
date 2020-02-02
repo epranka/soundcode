@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useContext, useCallback } from "react";
 import { useWindowSize } from "react-use";
 import styled from "styled-components";
-import { TweenLite } from "gsap";
 import OrchestraContext from "./OrchestraContext";
+import { gsap } from "gsap";
 
 interface IProps {}
 
@@ -29,7 +29,7 @@ class Item {
   public fadeIn() {
     return new Promise(resolve => {
       if (this.visible) return resolve();
-      TweenLite.to(this.$dom, 0.25, {
+      gsap.to(this.$dom, 0.25, {
         opacity: 1,
         onComplete: () => {
           this.visible = true;
@@ -42,7 +42,7 @@ class Item {
   public fadeOut() {
     return new Promise(resolve => {
       if (!this.visible) return resolve();
-      TweenLite.to(this.$dom, 0.25, {
+      gsap.to(this.$dom, 0.25, {
         opacity: 0,
         onComplete: () => {
           this.visible = false;
@@ -55,7 +55,7 @@ class Item {
   public slowFadeOut() {
     return new Promise(resolve => {
       if (!this.visible) resolve();
-      TweenLite.to(this.$dom, 7, {
+      gsap.to(this.$dom, 7, {
         opacity: 0,
         onComplete: () => {
           this.visible = false;
@@ -73,7 +73,7 @@ class Item {
   }
 
   public setPosition(x: number, y: number) {
-    TweenLite.set(this.$dom, { x, y });
+    gsap.set(this.$dom, { x, y });
   }
 }
 
