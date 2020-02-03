@@ -135,6 +135,7 @@ const VisualizerStyled = styled.div`
   z-index: 2;
   color: #dadada;
   font-size: 2vmax;
+  user-select: none;
 `;
 
 export default Visualizer;

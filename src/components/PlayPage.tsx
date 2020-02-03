@@ -161,6 +161,7 @@ const ControlButton = styled.div`
 const Timer = styled.div`
   font-size: 8vmax;
   display: block;
+  user-select: none;
 `;
 
 const Center = styled.div`
