@@ -48,6 +48,7 @@ const CodePage: React.SFC<IProps> = ({ onCreateOrchestra }) => {
               value={source}
               onChange={setSource}
             />
+            <ClearButton onClick={() => setSource("")}>Clear</ClearButton>
           </EditorContainer>
           <Container>
             <Row>
@@ -107,6 +108,27 @@ const EditorContainer = styled.div`
   background: #202124;
   border: 2px solid #9e9e9e;
   border-radius: 0.125rem;
+`;
+
+const ClearButton = styled.div`
+  z-index: 1;
+  position: absolute;
+  right: -2px;
+  bottom: -33px;
+  color: white;
+  border: 2px solid #9e9e9e;
+  border-radius: 0.125rem;
+  padding: 5px 17px;
+  text-align: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  transition: background 0.25s ease;
+  user-select: none;
+
+  &:hover {
+    background: rgba(32, 33, 36, 0.8);
+  }
 `;
 
 const PlayControlContainer = styled.div`
