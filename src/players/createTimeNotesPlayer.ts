@@ -2,6 +2,7 @@ import { ITimeNote } from "../types";
 import * as Tone from "tone";
 import ts from "typescript";
 import Instrument from "../instruments/Instrument";
+import { note as parseNote } from "@tonaljs/tonal";
 
 interface ITimeNotesPlayerOptions {
   instrument: Instrument;
@@ -88,6 +89,18 @@ export class ITimeNotesPlayer {
     }
   }
 
+  private isNoteValid(note: string | string[]) {
+    const notes = Array.isArray(note) ? note : [note];
+    let isValid = true;
+    for (const note of notes) {
+      const parsed = parseNote(note);
+      if (parsed.empty) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  }
+
   private loopCallback(time) {
     const beat = this.bar_counter / this.resolution;
 
@@ -113,14 +126,16 @@ export class ITimeNotesPlayer {
           itnote.velocity
         );
       } else {
-        this.instrument
-          .it()
-          .triggerAttackRelease(
-            itnote.note,
-            itnote.duration + "n",
-            time,
-            itnote.velocity
-          );
+        if (this.isNoteValid(itnote.note)) {
+          this.instrument
+            .it()
+            .triggerAttackRelease(
+              itnote.note,
+              itnote.duration + "n",
+              time,
+              itnote.velocity
+            );
+        }
       }
     }
     this.bar_counter++;

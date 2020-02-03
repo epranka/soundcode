@@ -1,5 +1,6 @@
 import * as Tone from "tone";
 import { INote } from "../types";
+import { note as parseNote } from "@tonaljs/tonal";
 import ts from "typescript";
 import Instrument from "../instruments/Instrument";
 
@@ -42,8 +43,10 @@ export class INotesPlayer {
       this.resolution + "n"
     );
 
+    this.handleTransportStart = this.handleTransportStart.bind(this);
     this.handleTransportStop = this.handleTransportStop.bind(this);
 
+    Tone.Transport.on("start", this.handleTransportStart);
     Tone.Transport.on("stop", this.handleTransportStop);
   }
 
@@ -53,6 +56,14 @@ export class INotesPlayer {
 
   public stop() {
     this.loop.stop();
+  }
+
+  private notifyEnd() {
+    if (this.callbacks["end"]) {
+      for (const callback of this.callbacks["end"]) {
+        callback();
+      }
+    }
   }
 
   public destroy() {
@@ -79,12 +90,30 @@ export class INotesPlayer {
     this.bar = 0;
   }
 
+  private handleTransportStart() {
+    if (this.inotes.length == 0) {
+      this.notifyEnd();
+    }
+  }
+
   private notify(note: string | string[], node: ts.Node | null) {
     if (this.callbacks["note"]) {
       for (const callback of this.callbacks["note"]) {
         callback(this.instrument.name, note, node);
       }
     }
+  }
+
+  private isNoteValid(note: string | string[]) {
+    const notes = Array.isArray(note) ? note : [note];
+    let isValid = true;
+    for (const note of notes) {
+      const parsed = parseNote(note);
+      if (parsed.empty) {
+        isValid = false;
+      }
+    }
+    return isValid;
   }
 
   private loopCallback(time) {
@@ -108,14 +137,16 @@ export class INotesPlayer {
             play(this.instrument, note, duration, time, velocity);
           }
         } else {
-          this.instrument
-            .it()
-            .triggerAttackRelease(
-              note,
-              durationWithSustain + "n",
-              time,
-              velocity
-            );
+          if (this.isNoteValid(note)) {
+            this.instrument
+              .it()
+              .triggerAttackRelease(
+                note,
+                durationWithSustain + "n",
+                time,
+                velocity
+              );
+          }
         }
       }
       this.note_counter++;
@@ -123,11 +154,7 @@ export class INotesPlayer {
         if (this.repeat) {
           this.note_counter = 0;
         } else {
-          if (this.callbacks["end"]) {
-            for (const callback of this.callbacks["end"]) {
-              callback();
-            }
-          }
+          this.notifyEnd();
         }
       }
     }

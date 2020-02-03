@@ -1,20 +1,19 @@
 import * as Tone from "tone";
-import Orchestra from "./Orchestra";
+import ts from "typescript";
+import bass from "../instruments/bass";
+import cello from "../instruments/cello";
+import chorusFemale from "../instruments/chorusFemale";
+import drums from "../instruments/drums";
+import flute from "../instruments/flute";
+import harp from "../instruments/harp";
+import piano from "../instruments/piano";
+import tubaSTC from "../instruments/tuba-stc";
 import createNotesPlayer, { INotesPlayer } from "../players/createNotesPlayer";
 import createTimeNotesPlayer, {
   ITimeNotesPlayer
 } from "../players/createTimeNotesPlayer";
-import cello from "../instruments/cello";
-import drums from "../instruments/drums";
-import harp from "../instruments/harp";
-import piano from "../instruments/piano";
-import flute from "../instruments/flute";
-import tubaSTC from "../instruments/tuba-stc";
-import chorusFemale from "../instruments/chorusFemale";
-import bass from "../instruments/bass";
 import AudioRecorder from "./AudioRecorder";
-import ts from "typescript";
-import Instrument from "../instruments/Instrument";
+import Orchestra from "./Orchestra";
 
 interface ICallbacks {
   end: (() => any)[];
