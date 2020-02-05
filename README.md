@@ -30,7 +30,9 @@ _And the idea was born._
 
 Have ideas on how to improve it? New features? Feel free to share it on the [GitHub Issues](https://github.com/epranka/soundcode/issues).
 
-<br />
+<p align="center">
+  <img alt="sound code gif" src="https://s5.gifyu.com/images/soundcode88851d64a3c7e069.gif" />
+</p>
 
 <h3>How it works</h3>
 
