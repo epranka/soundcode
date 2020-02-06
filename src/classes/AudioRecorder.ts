@@ -8,11 +8,17 @@ class AudioRecorder {
   destination: MediaStreamAudioDestinationNode;
 
   constructor() {
-    this.context = Tone.context;
-    this.destination = this.context.createMediaStreamDestination();
-    this.recorder = new MediaRecorder(this.destination.stream);
+    if (typeof MediaRecorder !== "undefined") {
+      this.context = Tone.context;
+      this.destination = this.context.createMediaStreamDestination();
+      this.recorder = new MediaRecorder(this.destination.stream);
 
-    this.recorder.ondataavailable = this.handleDataAvailable.bind(this);
+      this.recorder.ondataavailable = this.handleDataAvailable.bind(this);
+    }
+  }
+
+  public isAvailable() {
+    return typeof MediaRecorder !== "undefined";
   }
 
   private handleDataAvailable(event: BlobEvent) {
@@ -20,12 +26,16 @@ class AudioRecorder {
   }
 
   public start() {
-    this.clear();
-    this.recorder.start();
+    if (typeof MediaRecorder !== "undefined") {
+      this.clear();
+      this.recorder.start();
+    }
   }
 
   public stop() {
-    if (this.recorder.state === "recording") this.recorder.stop();
+    if (typeof MediaRecorder !== "undefined") {
+      if (this.recorder.state === "recording") this.recorder.stop();
+    }
   }
 
   public getAudioRecordBlob() {

@@ -28,7 +28,9 @@ class Instrument {
       self.instance = new self.ToneType(self.samples, () => {
         self.handleOnLoad();
         self.instance.volume.value -= 8;
-        self.instance.connect(AudioRecorder.destination);
+        if (AudioRecorder.isAvailable()) {
+          self.instance.connect(AudioRecorder.destination);
+        }
         resolve();
       }).toMaster();
     });
