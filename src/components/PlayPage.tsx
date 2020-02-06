@@ -125,7 +125,7 @@ const PlayPage: React.SFC<IProps> = ({ show, onStopClick }) => {
                 : "Repeat"}
             </ControlButton>
           </div>
-          {playState === "ended" ? (
+          {playState === "ended" && AudioRecorder.isAvailable() ? (
             <ControlButton onClick={invokeAudioRecordDownload}>
               &#x2193;&nbsp;Download
             </ControlButton>
