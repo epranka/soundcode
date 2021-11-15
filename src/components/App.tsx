@@ -3,7 +3,7 @@ import CodePage from "./CodePage";
 import { OrchestraContextProvider } from "./OrchestraContext";
 import PlayPage from "./PlayPage";
 import Preloader from "./Preloader";
-import Twitter from "./Twitter";
+import Credits from "./Credits";
 
 const App: React.FC = () => {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -17,7 +17,7 @@ const App: React.FC = () => {
         show={showPlayPage}
         onStopClick={() => setShowPlayPage(false)}
       />
-      <Twitter />
+      <Credits />
     </OrchestraContextProvider>
   );
 };
