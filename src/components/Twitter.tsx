@@ -6,11 +6,11 @@ interface IProps {}
 const Twitter: React.SFC<IProps> = ({}) => {
   return (
     <TwitterAnchor
-      href="https://twitter.com/epranka"
+      href="https://epranka.com"
       target="_blank"
-      title="Follow on Twitter"
+      title="Edvinas Pranka | Senior Developer"
     >
-      <img src="/twitter.png" alt="Twitter logo" /> <span>epranka</span>
+      <span>epranka.com</span>
     </TwitterAnchor>
   );
 };
@@ -21,6 +21,7 @@ const TwitterAnchor = styled.a`
   left: 20px;
   color: white;
   z-index: 3;
+  font-weight: bold;
 
   img {
     width: 24px;
