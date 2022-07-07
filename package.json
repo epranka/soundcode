@@ -50,7 +50,7 @@
     "jest-watch-typeahead": "0.4.2",
     "lodash": "^4.17.15",
     "mini-css-extract-plugin": "0.8.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "monaco-editor": "^0.19.3",
     "natural": "^0.6.3",
     "optimize-css-assets-webpack-plugin": "5.0.3",
